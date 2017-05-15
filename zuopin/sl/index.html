@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jQuery.js"></script>
+    <script>
+        $(function () {
+            //文档结构加载完成
+//            window onload。图片加载完成
+            var num=5;
+            var ls=5;
+            var times=0;
+            var mt;
+            var bi=0.95;
+            $("section span").on("click",function () {
+                if($(this).html()=="简"){
+                    ls=5;
+                    num=5;
+                    bi=0.95;
+
+                    $(".scene").empty();
+                    creatlei();
+                    $("time").html(0);
+                    times=0;
+                    clearInterval(mt);
+                    mt=setInterval(function () {
+                        times++;
+                        $("time").html(times);
+                    },1000);
+                    $(".flagnum").html("flag:"+num);
+                }
+                if($(this).html()=="中"){
+
+                    num=10;
+                    ls=10;
+                    bi=0.9;
+                    $(".scene").empty();
+                    creatlei();
+                    $("time span").html(0);
+                    times=0;
+                    clearInterval(mt);
+                    mt=setInterval(function () {
+                        times++;
+                        $("time").html(times);
+                    },1000);
+                    $(".flagnum").html("flag:"+num);
+                }
+                if($(this).html()=="难"){
+
+                    num=20;
+                    ls=20;
+                    bi=0.8;
+                    $(".scene").empty();
+                    creatlei();
+                    $("time").html(0);
+                    ms=0;
+                    clearInterval(mt);
+                    mt=setInterval(function () {
+                        times++;
+                        $("time").html(times);
+                    },1000);
+                    $(".flagnum").html("flag:"+num);
+                }
+            })
+            function creatlei() {
+                do {
+                    $(".scene").empty();
+                    for (var i = 0; i < 10; i++) {
+                        for (var j = 0; j < 10; j++) {
+                            var islei = Math.random() > bi;
+                            $("<div>").addClass(function () {
+                                if (islei) {
+                                    return "block lei";
+                                } else {
+                                    return "block";
+                                }
+                            }).attr("id", i + "-" + j).data("pos", {
+                                x: i,
+                                y: j
+                            }).mousedown(mousedownEvent).appendTo(".scene");
+                        }
+                    }
+                } while ($(".lei").length != ls);
+            }
+            
+            function mousedownEvent(e) {
+                if (e.which == 1) {
+                    leftclick.call(this);
+                } else {
+                    rightclick.call(this);
+                }
+            }
+
+            function leftclick() {
+                if($(this).hasClass("flag")){
+                    return;
+                }
+                if ($(this).hasClass("lei")) {
+                    $(".lei").addClass("show").click(function () {
+                        $(".zhao").fadeIn(1500);
+                        clearInterval(mt);
+                    });
+                } else {
+                    $(this).addClass("num");
+                    var pos = $(this).data("pos");
+                    var n = 0;
+                    for (var i = pos.x - 1; i <= pos.x + 1; i++) {
+                        for (var j = pos.y - 1; j <= pos.y + 1; j++) {
+                            if ($("#" + i + "-" + j).hasClass("lei")) {
+                                n++;
+                            }
+                        }
+                    }
+
+                    $(this).html(n);
+                    if (n == 0) {
+                        for (var i = pos.x - 1; i <= pos.x + 1; i++) {
+                            for (var j = pos.y - 1; j <= pos.y + 1; j++) {
+                                var obj = $("#" + i + "-" + j);
+                                if (obj.length == 1) {
+                                    if (!obj.hasClass("num")) {
+
+                                        leftclick.call(obj.get(0));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            function rightclick() {
+                if($(this).hasClass("num")){
+                    return;
+                }
+                if($(this).hasClass("flag")){
+                    $(this).removeClass("flag");
+                    num++;
+                }else{
+//                    $(this).addClass("flag");
+                    num--;
+                    if(num<0){
+                        num++;
+                        alert("错");
+                        return;
+
+                    }
+                    $(this).addClass("flag");
+                    if(num==0){
+                        if($(".flag").filter(".lei").length==ls){
+                            clearInterval(mt);
+                            $(".success").fadeIn(1500);
+                        }else{
+
+                            alert("重");
+                            num++;
+                            $(this).removeClass("flag");
+                            return;
+                        }
+                    }
+
+
+                }
+                $(".flagnum").html("flag:"+num);
+            }
+
+            $(document).on("contextmenu", function (e) {
+                e.preventDefault();
+            });
+            $(".start").on("click",function () {
+
+                $(".zhe").hide();
+                mt=setInterval(function () {
+                    times++;
+                    $("time").html(times);
+                },1000);
+
+                creatlei();
+                $(".flagnum").html("flag:"+num);
+            })
+            
+          $(".re").click(function () {
+                creatlei();
+                $(".zhao").fadeOut(500);
+              $("time").html(0);
+              times=0;
+              clearInterval(mt)
+              mt=setInterval(function () {
+                    times++;
+                    $("time").html(times);
+                },1000)
+              $(".flagnum").html("flag:"+num);
+
+            })
+          $(".in").click(function () {
+                creatlei();
+              $(".success").fadeOut(500);
+              $("time").html(0);
+              times=0;
+              clearInterval(mt)
+              mt=setInterval(function () {
+                    times++;
+                    $("time").html(times);
+                },1000)
+              $(".flagnum").html("flag:"+num);
+
+            })
+          $(".star").click(function(){
+          	clearInterval(mt);
+          	creatlei();
+          	$("time").html(0);
+              times=0;
+                mt=setInterval(function () {
+                    times++;
+                    $("time").html(times);
+                },1000)
+
+
+              $(".flagnum").html("flag:"+num);
+          })
+//            data()
+        })
+    </script>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .scene {
+        width: 500px;
+        height: 500px;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        margin: 10px auto;
+    }
+
+    .block {
+        width: 49px;
+        height: 49px;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        background: #8a6d3b;
+        float: left;
+    }
+
+    .lei {
+
+    }
+
+    .control {
+        width: 100px;
+        height: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+
+    .show {
+        /*background: #000;*/
+        background:#8a6d3b url(1b50d5e2ff795cf47e83ced0dfbfc2d5.png)  no-repeat;
+        background-size: cover;
+
+    }
+
+    .num {
+        background: #ccc;
+        text-align: center;
+        line-height: 50px;
+    }
+    .flag{
+        background: #fff url(1.png) no-repeat;
+        background-size: cover;
+    }
+    
+    .zhe,.success{
+        width:500px;
+        height:500px;
+        background: rgba(0,0,0,.9);
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        margin:10px auto;
+    }
+    .zhe p,.p{
+        width:500px;
+        height:50px;
+        text-align: center;
+        line-height:50px;
+        color: #fff;
+        font-size: 45px;
+        font-family: "华文行楷";
+        margin:100px auto;
+    }
+    .start{
+        background: url(r.png)100% 100% no-repeat;
+        background-size: cover;
+        margin: 0 auto;
+        width:260px;
+        height:120px;
+        cursor: pointer;
+    }
+    .re{
+        width: 200px;
+        height: 70px;
+        padding-top: 20px;
+        margin:0 auto;
+    }
+    .res,.index{
+        width: 200px;
+        height: 70px;
+        border: 3px solid #3c763d;
+        border-radius: 30px;
+        color: #fff;
+        line-height:70px;
+        text-align: center;
+        font-size: 30px;
+        font-family: "华文行楷";
+        cursor: pointer;
+    }
+    .zhao{
+        display: none;
+        background: rgba(0,0,0,.8);
+    }
+    .time{
+        text-align: center;
+    }
+    .success{
+        display: none;
+    }
+    .star{
+        cursor: pointer;
+    }
+    </style>
+<style type="text/css">
+.control{
+	height: 100%;
+	width:200px;
+	background: #515151;
+}
+	.control div{
+		width: 150px;
+		height: 50px;
+		background: #269ABC;
+		border-radius: 20px;
+		margin:30px auto;
+		color: #fff;
+		line-height: 50px;
+		font-size: 20px;text-align: center;
+	}
+	.flagnum{
+        text-align: center;
+        color: red;
+    }
+    section{
+        display: flex;
+        justify-content: center;
+    }
+    span{
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ccc;
+        font-size: 25px;
+        border-radius: 50%;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
+        margin: 5px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<div class="scene"></div>
+<div class="zhe">
+    <p>扫雷游戏</p>
+    <div class="start"></div>
+</div>
+<div class="zhe zhao">
+    <p>游戏结束</p>
+    <div class="re">
+        <div class="res">重新开始</div>
+    </div>
+</div>
+<div class=" success">
+    <p class="p">恭喜您获得成功</p>
+    <div class="re in">
+        <div class="index">重新开始</div>
+    </div>
+</div>
+<div class="control">
+    <div class="flagnum">flag</div>
+    <div class="time"><time>0</time>秒</div>
+    <div class="star">重新开始</div>
+    <div>难度选择</div>
+    <section>
+        <span>简</span>
+        <span>中</span>
+        <span>难</span>
+    </section>
+    <div>排行榜</div>
+
+</div>
+</body>
+</html>

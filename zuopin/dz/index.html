@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        * {
+            user-select: none;
+            /*去除浏览器默认*/
+        }
+
+        .scene {
+            width: 1000px;
+            height: 100%;
+            background: #ccc;
+            margin: 0 auto;
+        }
+
+        .main {
+            width: 800px;
+            height: 100%;
+            float: left;
+            background: url(IMG/96b22081010cd5b760cbfbe0746f16c5.jpg) 100% 100% no-repeat;
+            text-wrap: none;
+            background-size: cover;
+            position: relative;
+        }
+
+        .control {
+            width: 200px;
+            height: 100%;
+            background: rgb(99, 163, 92);
+            float: left;
+        }
+
+        .box {
+            width: 80%;
+            height: 50px;
+            margin: 10px auto;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .box .name {
+            height: 20px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .scor, .state, .life {
+            width: 80%;
+            height: 30px;
+            /*background: #515151;*/
+            margin: 0 auto;
+            font-size: 20px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+        }
+
+        .begin, .stop {
+            font-size: 30px;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .letter {
+            width: 40px;
+            height: 60px;
+            /*border: 1px solid red;*/
+
+            position: absolute;
+            color: #fff;
+        }
+
+        .btn {
+            width: 80%;
+            height: 30px;
+            border-radius: 5px;
+            background: #FF8000;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-30px);
+            }
+            50% {
+                transform: translateX(0px);
+            }
+            75% {
+                transform: translateX(30px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .zhezhao {
+            width: 1000px;
+            height: 100%;
+            background: url(Img/bg.png) 100% 100% no-repeat;
+            z-index: 10;
+        }
+
+        .dong {
+            animation: move 3s linear infinite;
+        }
+
+        .zhe {
+            width: 710px;
+            height: 250px;
+            margin: 0 auto;
+            padding: 30px;
+            background: url(IMG/logo.png) no-repeat center;
+        }
+
+        .zhao {
+            width: 340px;
+            height: 100px;
+            cursor: pointer;
+            margin: 0 auto;
+            padding: 40px;
+            background: url(IMG/start.png) no-repeat center;
+            transition: all 1s;
+        }
+
+        .death {
+            width: 1000px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            display: none;
+        }
+
+        .zhao:hover {
+            transform: scale(1.1);
+        }
+
+        .music {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: url(IMG/music.png) no-repeat;
+            z-index: 9999;
+            float: right;
+            margin-right: 10px;
+            background-color: #FEC743;
+            border: 3px solid #fff;
+            animation: rotate 3s linear infinite;
+            cursor: pointer;
+        }
+
+        .fen {
+            width: 484px;
+            height: 419px;
+            margin: 0 auto;
+            padding: 30px;
+            background: url(IMG/over.png) no-repeat center;
+        }
+
+        .fenshu {
+            width: 100px;
+            height: 40px;
+            margin-left: 280px;
+            margin-top: 150px;
+            line-height: 40px;
+            font-size: 30px;
+        }
+
+        .maxfen {
+            width: 100px;
+            height: 40px;
+            margin-left: 280px;
+            margin-top: 5px;
+            line-height: 40px;
+        }
+
+        .fen span {
+            font-size: 30px;
+            margin-left: 5px;
+        }
+        .deathbtn{
+            width: 250px;
+            height: 93px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+        .return:hover{
+            transform: rotate(360deg);
+        }
+        .return{
+            width: 93px;
+            height: 93px;
+            background: url(IMG/restart.png);
+            float: left;
+            cursor: pointer;
+            transition: all 1s;
+        }
+        .quit:hover{
+            transform: scale(1.1);
+        }
+        .quit{
+            width: 93px;
+            height: 93px;
+            background: url(IMG/quit.png);
+            float: right;
+            cursor: pointer;
+            background-size: 100% 100%;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+<div class="scene">
+    <div class="zhezhao">
+        <div class="music"></div>
+        <div class="dong">
+            <div class="zhe"></div>
+            <div class="zhao"></div>
+        </div>
+    </div>
+    <div class="death">
+        <div class="fen">
+            <div class=" fenshu">0</div>
+            <div class=" fenshu maxfen">0</div>
+            <div class="deathbtn">
+                <div class="return"></div>
+                <div class="quit"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main"></div>
+    <div class="control">
+        <div class="box">
+            <div class="name">得分</div>
+            <div class="scor">0</div>
+        </div>
+        <div class="box">
+            <div class="name">关卡</div>
+            <div class="state">1</div>
+        </div>
+        <div class="box">
+            <div class="name">生命</div>
+            <div class="life">5</div>
+        </div>
+        <div class="box">
+            <div class="begin">开始</div>
+        </div>
+        <div class="box">
+            <div class="stop">暂停</div>
+        </div>
+    </div>
+</div>
+<script>
+    //创建字母
+    var main = document.querySelector(".main");
+    const scor = document.querySelector(".scor");
+    const begin = document.querySelector(".begin");
+    const stop = document.querySelector(".stop");
+    const state = document.querySelector(".state");
+    const life = document.querySelector(".life");
+    const zhezhao = document.querySelector(".zhezhao");
+    const began = document.querySelector(".zhao");
+    const death=document.querySelector(".death");
+    const restart=document.querySelector(".return");
+    const quit=document.querySelector(".quit");
+    const fen=document.querySelector(".fenshu");
+    const shu=document.querySelector(".maxfen");
+
+    class Game {
+        constructor(main, scor, state, life) {
+            this.main = main;
+            this.scor = scor;
+            this.state = state;
+            this.lifele = life;
+            this.life = 5;
+            this.guan = 1;
+            this.num = 3;
+            this.fenshu = 0;
+//            this.maxfen=0;
+            this.obj = {};
+            this.speed = 5;
+            this.height = window.innerHeight;
+            this.flag = true;
+            this.bestscor=localStorage.bestscor?localStorage.bestscor:0;
+//            this.bestscor=localStorage.bestscor?JSON.parse(localStorage.bestscor):[];
+//            this.st = null;
+        }
+
+        _creatLetter() {
+            var div = document.createElement("div");
+            div.className = "letter";
+            do {
+                var rn = Math.floor(Math.random() * 26 + 65);
+                var le = String.fromCharCode(rn);
+            } while (this.obj[le]);
+            div.style.backgroundImage = "url(IMG/" + le + ".gif)";
+            div.style.backgroundSize = "100% 100%";
+//            div.innerHTML = le;
+            do {
+                var rl = Math.random() * 720;
+            } while (this._check(rl));
+            var rt = -Math.random() * 100;
+            div.style.left = rl + "px";
+            div.style.top = rt + "px";
+            this.obj[le] = {left: rl, top: rt, el: div};
+            this.main.appendChild(div);
+        }
+
+        _check(left) {
+            for (var i in this.obj) {
+                if (left > this.obj[i].left - 80 && left < this.obj[i].left + 80) {
+                    return true;
+                }
+            }
+        }
+
+        start() {
+            for (var i = 0; i < this.num; i++) {
+                this._creatLetter();
+            }
+            this._move();
+            this._keydown();
+            this.flag = false;
+        }
+
+        _move() {
+            this.st = setInterval(function () {
+                for (var i in this.obj) {
+                    var t = this.obj[i].top;
+                    t += this.speed;
+                    this.obj[i].top = t;
+                    this.obj[i].el.style.top = t + "px";
+                    if (t > this.height) {
+                        this.life--;
+                        this.lifele.innerHTML = this.life;
+                        this.main.removeChild(this.obj[i].el);
+                        delete this.obj[i];
+                        this._creatLetter();
+                        if (this.life == 0) {
+                            this._gameover();
+                            return;
+                        }
+                    }
+                }
+            }.bind(this), 50)
+        }
+
+        _keydown() {
+            document.onkeydown = function (e) {
+                var keycode = e.keyCode;
+                var l = String.fromCharCode(keycode);
+                if (this.obj[l]) {
+                    this.main.removeChild(this.obj[l].el);
+                    delete this.obj[l];
+                    this.fenshu++;
+                    scor.innerHTML = this.fenshu;
+                    if (this.fenshu % 10 == 0) {
+                        this._upstate();
+                    }
+                    this._creatLetter();
+                }
+            }.bind(this);
+        }
+
+        _upstate() {
+            this.guan++;
+            this.state.innerHTML = this.guan;
+            if (this.guan <= 4) {
+                this._creatLetter();
+            } else {
+                this.speed++;
+            }
+        }
+
+        _gameover() {
+            death.style.display="block";
+            if(restart.onclick=function () {
+                death.style.display="none"
+                    game.start();
+                }){}
+                if(quit.onclick=function () {
+                        death.style.display="none";
+                        zhezhao.style.display="block";
+                    })
+            if(this.fenshu<this.bestscor){
+                shu.innerHTML=this.bestscor;
+                fen.innerHTML=this.fenshu;
+            }else{
+                shu.innerHTML=this.fenshu;
+                fen.innerHTML=this.fenshu;
+                localStorage.bestscor=this.fenshu;
+            }
+//            排序
+            var shuru=false;
+            if(this.bestscor.length<3||(this.bestscor.length>=3&&this.fenshu>this.bestscor[2].scor)){
+                var player=prompt("姓名是");
+                this.bestscor.push({player,scor:this.fenshu});
+                this.bestscor.sort(function (a,b) {
+                    if(a.scor>b.scor){
+                        return -1;
+                    }else{
+                        return 1;
+                    }
+                })
+                if(this.bestscor.length>3){
+                    this.bestscor.pop();
+                }
+                localStorage.bestscor=JSON.stringify(this.bestscor);
+            }
+            this.main.innerHTML = null;
+            this.obj = {};
+            this.speed = 5;
+            this.fenshu = 0;
+            this.scor.innerHTML = 0;
+            this.life = 5;
+            this.lifele.innerHTML = 5;
+            this.guan = 1;
+            this.state.innerHTML = 1;
+            this.flag = true;
+            clearInterval(this.st);
+        }
+
+        pause() {
+            clearInterval(this.st);
+            document.onkeydown = null;
+        }
+
+        play() {
+            this._move();
+            this._keydown();
+        }
+    }
+
+    var game = new Game(main, scor, state, life);
+    begin.onclick = function () {
+        if (game.flag) {
+            game.start();
+        }
+    }
+    began.onclick = function () {
+        zhezhao.style.display = "none";
+        if (game.flag) {
+            game.start();
+        }
+    }
+    var fl = true;
+    stop.onclick = function () {
+        if (fl) {
+            stop.innerHTML = "继续";
+            game.pause();
+        } else {
+            stop.innerHTML = "暂停";
+            game.play();
+        }
+        fl = !fl;
+    }
+//JSON.parse();把字符串转化为JSON
+//    JSON.stringify();把JSON转化为字符串
+</script>
+</body>
+</html>

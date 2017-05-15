@@ -171,17 +171,17 @@ body{
 .zuopon{
 	display: flex;
 	justify-content:space-around;
-	height: 350px;
+	height: 295px;
 }
 .zuop{
 	width: 250px;
-	height: 275px;
+	height: 230px;
 	border:1px solid #ccc;
 	padding-top:30px;
 }
 .yuanju{
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	border-radius: 50%;
 	/*margin-top:30px;*/
 	background:red;
@@ -190,6 +190,55 @@ body{
     background-size: 200px 200px;
     background-repeat: no-repeat;
 	margin:0 auto;
+}
+.ju1{
+	background-image: url(../img/0185208f72281497f0f266ae2fe0d83d.jpg);
+	background-size: cover;
+}
+.ju2{
+	background-image: url(../img/f601fded48fa2a965061befa222afb8e.jpg);
+	background-size: cover;
+}
+.ju3{
+	background-image: url(../img/1695498d87d2adc0adf17412a9ff7f68.jpg);
+	background-position: left;
+	background-size: 210px 200px;
+}
+.ju4{
+	background-image: url(../img/0dd7bc66d397ebe5d350dccceccdbb13.jpg);
+	background-size: cover;
+}
+.ju5{
+	background-image: url("../img/9375bf6c849ec224e073b9f7c5c4f298.jpg");
+	background-size: cover;
+}
+.ju6{
+	background-image: url("../img/86808d0244afbd5122170ecb7d78a1d7.png");
+	background-size: cover;
+}
+.ju7{
+	background-image: url("../img/c3dec29df20d3b854ee0cba18743d20f2dadc987.png!medium.icon");
+	background-size:cover;
+}
+.ju8{
+	background-image: url("../img/323054f5417adec9f5bf125f1256bf15.png");
+	background-size: cover;
+}
+.ju9{
+	background:url(../img/22.jpg)  no-repeat;
+	background-size: cover;
+}
+.ju10{
+	background:url(../img/1.png)  no-repeat;
+	background-size: cover;
+}
+.ju11{
+	background: url("../img/045db5f5f5a6e135bdb7b263a048a566.jpg") no-repeat;
+	background-size: cover;
+}
+.ju12{
+	background: url("../img/B.gif") no-repeat;
+	background-size: 100% 100%;
 }
 .zuopy p{
 	padding:25px;
