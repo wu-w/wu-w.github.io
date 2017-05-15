@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+	*{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+		.banner{
+			width: 100%;
+			height: 500px;
+			background: #109;
+			position: relative;
+
+		}
+		.img{
+			width: 700px;
+			height: 500px;
+			overflow: hidden;
+			margin:0 auto; 
+			position: relative;
+		}
+		.tu{
+			width: 700px;
+			height: 500px;
+			background: yellow;
+			position: absolute;
+			top:0;
+			left: 0;
+			right: 0;
+			z-index: 1;
+		}
+		.tu:nth-child(1){
+			background: yellow;
+		}
+		.tu:nth-child(2){
+			background: #234;
+		}
+		.tu:nth-child(3){
+			background: blue;
+		}
+		.tu:nth-child(4){
+			background: grey;
+		}
+		.banner ul{
+			width: 80px;
+			height: 12px;
+			position: absolute;
+			bottom:10px;
+			/*margin-left: 40px;*/
+			left: 0;
+			right: 0;
+			margin: auto;
+			display: flex;
+			/*background: red;*/
+			justify-content:center;
+			z-index: 1;
+		}
+		.banner ul li{
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: #fff;
+			margin-right: 5px;
+			flex-grow:1;
+		}
+
+
+	</style>
+
+
+
+	<div class="banner">
+		<div class="img">
+			<div class="tu"></div>
+			<div class="tu"></div>
+			<div class="tu"></div>
+			<div class="tu"></div>	
+		</div>
+		
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div> 
+
+
+	<script src="animate.js"></script>
+	<!-- <script>
+
+	// 轮播图
+	// window.onload=function(){
+	// 	const bannerbox=document.querySelectorAll(".banner")[0]
+	// 	const tu=document.querySelectorAll(".tu")
+	// 	const img=document.querySelectorAll(".img")[0]
+	// 	const li=document.querySelectorAll(".banner li")
+	// 	tu[0].style.zIndex=1;
+	// 	li[0].style.background="#fff"
+	// 	var num=0;
+	// 	var t=setInterval(move,1000)
+	// 	tu[0].style.zIndex=2;
+
+
+	// 	for(let i=0;i<li.length;i++){
+	// 		li[i].onmouseover=function(){
+	// 			clearInterval(t)
+	// 			for(let j=0;j<tu.length;j++){
+	// 				tu[j].style.zIndex=1;
+					
+	// 				li[j].style.background="#fff"
+	// 			}
+	// 			tu[i].style.zIndex=2;
+	// 			li[i].style.background="orange"
+	// 		}
+
+	// 	}
+
+
+	// 	function move(){
+	// 		num++;
+	// 		if(num>3){
+	// 			num=0;
+	// 		}
+			
+	// 		for(let i=0;i<tu.length;i++){
+				
+	// 			tu[i].style.zIndex=1;
+	// 			li[i].style.background="#fff"	
+	// 			// console.log(i)
+	// 		}
+	// 			tu[num].style.zIndex=2;
+	// 			li[num].style.background="orange"
+	// 	}
+			
+			
+		
+	// 	img.onmouseover=function(){
+	// 			clearInterval(t);
+	// 	}
+	// 	img.onmouseout=function(){
+	// 			t=setInterval(move,1000)
+	// 	}
+		
+	// 	li.onmouseout=function(){
+	// 		t=setInterval(move,1000)
+	// 	}
+	
+
+	// }
+	
+
+
+
+	</script>-->
+	<script>
+	// 左右轮播
+		window.onload=function(){
+			const bannerbox=document.querySelectorAll(".banner")[0]
+			const tu=document.querySelectorAll(".tu")
+			const img=document.querySelectorAll(".img")[0]
+			const li=document.querySelectorAll(".banner li")
+			const imgW=parseInt(window.getComputedStyle(img,null).width);
+
+			var now=0;
+			var next=0;
+			li[0].style.background="#fff";
+
+			for(let i=0;i<tu.length;i++){
+				tu[i].style.left=imgW+"px";
+			}
+			tu[0].style.left=0+"px";
+			var t=setInterval(move,1000);
+
+			function move(){
+				next++;
+				if(next>tu.length-1){
+					next=0;
+				}
+				for(let i=0;i<tu.length;i++){
+					li[i].style.background="orange";
+					tu[i].style.left=imgW+"px";
+				}
+				
+				animate(tu[now],{left:-imgW},500);
+				li[now].style.background="#fff";
+				// li[next].style.background="orange";
+				// tu[next].style.left=imgW+"px";
+				animate(tu[next],{left:0},500);
+				now=next;
+				
+			}
+			img.onmouseover=function(){
+				clearInterval(t);
+			}
+			img.onmouseout=function(){
+				t=setInterval(move,1000);
+			}
+			for(let i=0;i<li.length;i++){
+				li[i].onmouseover=function(){
+					clearInterval(t);
+					for(j=0;j<li.length;j++){
+						li[j].style.background="orange";
+						tu[i].style.left=imgW+"px";
+					}
+					li[i].style.background="#fff";
+					// animate(tu[now],{left:-imgW},500);
+					animate(tu[i],{left:0},500);
+					next=i-1;
+				}
+				li[i].onmouseout=function(){
+					t=setInterval(move,1000);
+				}
+			}
+			
+
+			
+
+
+		}
+
+		// window.onload=function(){
+		// 	const tu=document.querySelectorAll(".tu");
+		// 	const img=document.querySelector(".img")[0];
+		// 	const imgW=parseInt(window.getComputedStyle(img,null).width);
+		// 	console.log(img);
+		// 	tu[0].style.left=0;
+
+		// }
+
+
+	</script>
+</body>
+</html>

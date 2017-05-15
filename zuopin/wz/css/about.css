@@ -1,0 +1,54 @@
+.content{
+    width:50%;
+    padding-top: 95px;
+    padding-bottom: 83px;
+    float: left;
+}
+.content>p{
+    color: #D3D3D3;
+    font-size: 15px;
+    margin-top:20px;
+}
+.content>span{
+    font-size: 35px;
+    color: #f6f6f6;
+}
+.content>img{
+    float: right;
+}
+.third{
+    border:1px solid #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding-bottom:0;
+}
+.jieshao{
+    text-align: center;
+}
+.tou{
+    display: inline-block;
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    margin-top:30px;
+    background: url(../img/2f4988857464ce6b5e3704851b504c98.jpeg)  no-repeat ;
+    background-size:cover;
+}
+.name,.po{
+    font-size: 20px;
+    margin:20px 0 10px 0;
+}
+.xia{
+    padding: 50px 20px;
+    background: rgba(255,255,255,.1);
+}
+.xia>p{
+    color: #f3f3f3;
+}
+.tou2{
+    background: url(../img/2d055f8ec11af275a97fed020ced7d62.jpg)  center no-repeat;
+}
+.tou3{
+    background: url(../img/5f06f67986a73f4844392f6edc7e0ba4.jpg) no-repeat;
+    background-size: cover;
+}
