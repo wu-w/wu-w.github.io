@@ -152,6 +152,21 @@ function jiedianlunbo(hezi,img,zuokuohao,youkuohao,num,lunboxiaotime){
 
 }
 
-
+const dadabox = $(".dhbox");
+const prev = $(".preva");
+const next = $(".nexta");
+for(let i=0;i<dadabox.length;i++){
+    next[i].onclick=function(){
+        animate(dadabox[i],{marginLeft:-570},500,function(){
+            dadabox[i].appendChild(dadabox[i].firstElementChild);
+            dadabox[i].style.marginLeft=0;
+        })
+    }
+    prev[i].onclick=function(){
+        dadabox[i].style.marginLeft=-570+"px";
+        dadabox[i].insertBefore(dadabox[i].lastElementChild,dadabox[i].firstElementChild);
+        animate(dadabox[i],{marginLeft:0},500);
+    }
+}
 
 

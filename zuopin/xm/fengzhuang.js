@@ -377,8 +377,8 @@ function Carousel(pic,bigbannerBox,lis,colorArr,tuactiveO,liactivebgColor,lunboT
 						box[i].style.left=-imgW+"px";
 					}
 					box[now].style.left=0+"px";
-					animate(box[now],{left:imgW*n},1000);
-					animate(box[next],{left:0},1000,function(){
+					animate(box[now],{left:imgW*n},2500);
+					animate(box[next],{left:0},2500,function(){
 						// for(let i=0;i<n;i++){
 							// let first = box.firstElementChild;
 							// box.appendChild(first)
@@ -900,6 +900,97 @@ function Carousel(pic,bigbannerBox,lis,colorArr,tuactiveO,liactivebgColor,lunboT
 
 
 
+function Tlunbo(pic,bannerBox,lis,colorArr,tuactiveopacity,liactivebgColor,lubotime,tuopacity,lisColor,zuokuohao,youkuohao){
+    const tu=$(pic);
+    // console.log(tu)
+    const banner=$(bannerBox)[0];
+    // console.log(banner)
+    const li=$(lis);
+    // console.log(li)
+    const leftBen=$(zuokuohao)[0];
+    const rightBen=$(youkuohao)[0];
+    // console.log(leftBen,rightBen)
+    const color=colorArr;
+    for(let i=0;i<tu.length;i++){
+        tu[i].style.opacity=tuopacity;
+        li[i].style.background=lisColor;//白
+        banner.style.background=color[i];
+    }
+    tu[0].style.opacity=tuactiveopacity;
+    li[0].style.background=liactivebgColor;//红
+    banner.style.background=color[0];
+    var num=0;
+    var now=0;
+    var flag=true;
+    var t=setInterval(move,lubotime);
 
+    function move(type="r"){
+        flag=false;
+        if(type=="r"){
+            num++;
+            if(num>tu.length-1){
+                num=0;
+            }
+        }else if(type=="l"){
+            num--;
+            if(num<0){
+                num=tu.length-1;
+            }
+        }
+        for(let i=0;i<li.length;i++){
+            li[i].style.background=lisColor;
+        }
+        li[num].style.background=liactivebgColor;//红
+        banner.style.background=color[num];
+        animate(tu[now],{opacity:0},1000);
+        animate(tu[num],{opacity:tuactiveopacity},1000,function(){
+            now=num;
+            flag=true;
+        });
+    }
+    banner.onmouseover=function(){
+        clearInterval(t);
+
+    }
+    banner.onmouseout=function(){
+        t=setInterval(move,lubotime);
+    }
+    for(let j=0;j<li.length;j++){
+        li[j].onmouseover=function(){
+            if(flag){
+                flag=false;
+                for(let i=0;i<tu.length;i++){
+                    // tu[i].style.opacity=tuopacity;
+                    li[i].style.background=lisColor;
+                    banner.style.background=color[i];
+                }
+                li[j].style.background=liactivebgColor;
+                banner.style.background=color[j];
+                animate(tu[now],{opacity:0},1000);
+                animate(tu[j],{opacity:tuactiveopacity},1000,function(){
+                    num=j;
+                    now=num;
+                    flag=true;
+                });
+            }
+        }
+    }
+    leftBen.onmouseover=function(){
+        clearInterval(t);
+    }
+    rightBen.onmouseover=function(){
+        clearInterval(t);
+    }
+    leftBen.onclick=function(){
+        if(flag){
+            move("l");
+        }
+    }
+    rightBen.onclick=function(){
+        if(flag){
+            move("r");
+        }
+    }
+}
 
 

@@ -2973,3 +2973,40 @@ footer {
 .xuanlie:hover {
     background: #c81623;
 }
+.dh{
+    width:570px;
+    overflow: hidden;
+    position: relative;
+}
+.dd_hou{
+    width:570px;
+}
+.dhbox{
+    width:1000%;
+    display: flex;
+}
+.preva,.nexta{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:-1px;
+    font-size: 20px;
+    color: #000;
+    line-height: 58px;
+    display: none;
+    cursor: pointer;
+}
+.nexta{
+    right: 0;
+    left:inherit;
+}
+.dh:hover .preva{
+    display: block;
+}
+.dh:hover .nexta{
+    display: block;
+}
+.dch{
+    width:360px;
+}

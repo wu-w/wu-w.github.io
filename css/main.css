@@ -237,8 +237,12 @@ body{
 	background-size: cover;
 }
 .ju12{
-	background: url("../img/B.gif") no-repeat;
-	background-size: 100% 100%;
+	background: url("../img/8eefd45b26ca1eb6d15f5f5b23948e1f.jpg") no-repeat;
+	background-size: cover;
+}
+.ju13{
+	background: url("../img/f72ef05d2c75c21c1314edb7d944714a.jpg")no-repeat;
+	background-size: cover;
 }
 .zuopy p{
 	padding:25px;
