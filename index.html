@@ -93,7 +93,8 @@
         <div class="zp">
             <div class="contanier">
                 <div class="gr" style="margin:0 0 20px 0;">作品展示</div>
-                <div class="showz">
+                <div class="slide">
+                    <div class="showz">
                     <div class="zuopon">
                         <a href="zuopin/tm/index.html" target="_blank">
                             <div class="zuop">
@@ -176,8 +177,9 @@
                             </div>
                         </a>
                     </div>
-                </div>
-                <div class="showz">
+                </div></div>
+                <div class="slide">
+                    <div class="showz">
                     <div class="zuopon">
                         <a href="zuopin/wz/index.html" target="_blank">
                             <div class="zuop">
@@ -231,6 +233,7 @@
                             </div>
                         </a>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -343,10 +346,10 @@
         slideSelector: ".slide",
         afterLoad:function (l,index) {
             if(index==3){
-                $(".jn11").animate({width:380},1500);
-                $(".jn12").animate({width:350},1500);
-                $(".jn13").animate({width:300},1500);
-                $(".jn14").animate({width:250},1500);
+                $(".jn11").animate({width:380},1000);
+                $(".jn12").animate({width:350},1000);
+                $(".jn13").animate({width:300},1000);
+                $(".jn14").animate({width:250},1000);
             }
         }
     });
