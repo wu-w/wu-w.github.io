@@ -19,18 +19,21 @@
         }
 
         .title {
-            width: 100%;
+            width: 1000px;
             height: 100%;
-            background: #0ff;
+            background: rgba(47,47,47,0.98);
             line-height: 100px;
-            font-size: 20px;
+            font-size: 40px;
             font-weight: bold;
             padding-left: 30px;
+            margin:0 auto;
+            color: #fff;
         }
 
         .inputarea {
-            width: 100%;
+            width: 1000px;
             height: 50%;
+            margin:0 auto;
         }
 
         #text {
@@ -43,28 +46,31 @@
             width: 150px;
             height: 50px;
             float: left;
-            background: #f280a7;
+            /*background: #8b8b8b;*/
             border: none;
             cursor: pointer;
+            font-size: 25px;
+            color: #000;
         }
 
         .show {
-            width: 100%;
-            background: firebrick;
+            width: 1000px;
+            /*background: #534b5d;*/
             flex-grow:1;
+            margin:0 auto;
         }
         .plan{
             width:50%;
             height:80%;
             overflow: auto;
-            background: orange;
+            background: #fff;
             float: left;
         }
         .done{
             width:50%;
             height:80%;
             overflow: auto;
-            background: #963;
+            background: #f8f8f8;
             float: right;
         }
         ul{
@@ -90,17 +96,17 @@
             height:auto;
             /*border:1px dashed #ccc;*/
             line-height:30px;
-            color: #fff;
+            color: #000;
             padding-left:30px;
         }
         ul li time{
             float: right;
             width:190px;
             height:30px;
-            background: #63a35c;
+            /*background: #63a35c;*/
             text-align: center;
             line-height:30px;
-            color: #fff;
+            color: #000;
         }
         .contenttitle{
             width:50%;
@@ -109,13 +115,14 @@
             text-align: center;
             font-size: 16px;
             font-weight: bold;
-            color: #f0ad4e;
+            color: #000;
+            background: #aaaaaa;
             line-height:30px;
         }
     </style>
 </head>
 <body>
-    <div class="title">TO　DO　LIST</div>
+    <div class="title">TO DO LIST</div>
     <div class="inputarea">
         <input type="text" id="text">
         <input   type="button" id="submit" value="提交">
