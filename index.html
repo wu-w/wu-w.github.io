@@ -407,6 +407,7 @@
     option = {
         backgroundColor: '',
         title: {
+            bottom:'0',
             text: '',
             left: 'center',
             textStyle: {
@@ -414,8 +415,8 @@
             }
         },
         legend: {
-            bottom: 5,
-            data: ['技能', '上海', '广州'],
+            bottom: 0,
+            data: ['技能', '程度', '深度'],
             itemGap: 20,
             textStyle: {
                 color: '#fff',
@@ -445,7 +446,7 @@
             splitNumber: 5,
             name: {
                 textStyle: {
-                    color: 'rgb(238, 197, 102)'
+                    color: 'rgb(238, 197, 102)',fontSize:20
                 }
             },
             splitLine: {
@@ -485,7 +486,7 @@
                 }
             },
             {
-                name: '上海',
+                name: '程度',
                 type: 'radar',
                 lineStyle: lineStyle,
                 data: dataSH,
@@ -502,7 +503,7 @@
                 }
             },
             {
-                name: '广州',
+                name: '深度',
                 type: 'radar',
                 lineStyle: lineStyle,
                 data: dataGZ,
