@@ -176,7 +176,7 @@ body{
 .zuop{
 	width: 250px;
 	height: 230px;
-	border:1px solid #ccc;
+	/*border:1px solid #ccc;*/
 	padding-top:30px;
 }
 .yuanju{
@@ -269,7 +269,9 @@ footer p{
 	font-size: 24px;
 	color: white;
 	text-align: center;
-	padding:30px 0;
+	padding: 0 0 43px 30px;
+	font-weight: lighter;
+
 }
 
 	.col-lg-none{
@@ -399,4 +401,54 @@ footer p{
 
 .jn11,.jn12,.jn13,.jn14{
 	width:0;
+}
+.form-group {
+	margin-bottom: 25px;
+}
+
+.form-control {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: transparent;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+textarea.form-control {
+	height: auto;
+}
+.custom-btn-one {
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.70);
+	border-color: rgb(255, 15, 101)!important;
+}
+
+.btnbt {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+.nk{
+	width:1080px;
+	margin: 80px auto 15px;
+	text-align: center;
+	display: flex;
+
+}
+footer{
+	padding: 0 0 0 50px;
 }
