@@ -21,13 +21,14 @@
             height: 100%;
             background: #ccc;
             margin: 0 auto;
+            position: relative;
         }
 
         .main {
-            width: 800px;
+            width: 1000px;
             height: 100%;
             float: left;
-            background: url(IMG/96b22081010cd5b760cbfbe0746f16c5.jpg) 100% 100% no-repeat;
+            background: url(IMG/7e2a1d9eb04dd1e7bc20dc7c80bb4de7.jpg) 100% 100% no-repeat;
             text-wrap: none;
             background-size: cover;
             position: relative;
@@ -36,8 +37,10 @@
         .control {
             width: 200px;
             height: 100%;
-            background: rgb(99, 163, 92);
+            /*background: rgb(99, 163, 92);*/
             float: left;
+            position: absolute;
+            right:0;
         }
 
         .box {
@@ -124,7 +127,8 @@
         .zhezhao {
             width: 1000px;
             height: 100%;
-            background: url(Img/bg.png) 100% 100% no-repeat;
+            background: url(Img/b1928c2c93c75091184ad0402546567c.jpg) no-repeat;
+            background-size: cover;
             z-index: 10;
         }
 
@@ -145,7 +149,7 @@
             height: 100px;
             cursor: pointer;
             margin: 0 auto;
-            padding: 40px;
+            padding:200px;
             background: url(IMG/start.png) no-repeat center;
             transition: all 1s;
         }
@@ -311,8 +315,8 @@
             this.speed = 5;
             this.height = window.innerHeight;
             this.flag = true;
-            this.bestscor=localStorage.bestscor?localStorage.bestscor:0;
-//            this.bestscor=localStorage.bestscor?JSON.parse(localStorage.bestscor):[];
+//            this.bestscor=localStorage.bestscor?localStorage.bestscor:0;
+            this.bestscor=localStorage.bestscor?JSON.parse(localStorage.bestscor):[];
 //            this.st = null;
         }
 
@@ -404,14 +408,7 @@
 
         _gameover() {
             death.style.display="block";
-            if(restart.onclick=function () {
-                death.style.display="none"
-                    game.start();
-                }){}
-                if(quit.onclick=function () {
-                        death.style.display="none";
-                        zhezhao.style.display="block";
-                    })
+
             if(this.fenshu<this.bestscor){
                 shu.innerHTML=this.bestscor;
                 fen.innerHTML=this.fenshu;
@@ -423,8 +420,8 @@
 //            排序
             var shuru=false;
             if(this.bestscor.length<3||(this.bestscor.length>=3&&this.fenshu>this.bestscor[2].scor)){
-                var player=prompt("姓名是");
-//                this.bestscor.push({player,scor:this.fenshu});
+//                var player=prompt("姓名是");
+                this.bestscor.push({player,scor:this.fenshu});
                 this.bestscor.sort(function (a,b) {
                     if(a.scor>b.scor){
                         return -1;
@@ -466,13 +463,13 @@
         if (game.flag) {
             game.start();
         }
-    }
+    };
     began.onclick = function () {
         zhezhao.style.display = "none";
         if (game.flag) {
             game.start();
         }
-    }
+    };
     var fl = true;
     stop.onclick = function () {
         if (fl) {
@@ -483,7 +480,15 @@
             game.play();
         }
         fl = !fl;
-    }
+    };
+    restart.onclick=function () {
+            death.style.display="none";
+            game.start();
+        };
+    quit.onclick=function () {
+            death.style.display="none";
+            zhezhao.style.display="block";
+        };
 //JSON.parse();把字符串转化为JSON
 //    JSON.stringify();把JSON转化为字符串
 </script>
