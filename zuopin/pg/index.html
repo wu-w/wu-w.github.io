@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="css/bass.css">
 	<link rel="stylesheet" href="http://at.alicdn.com/t/font_41mbm4shw56d2t9.css">
 	<link rel="stylesheet" href="http://at.alicdn.com/t/font_qxraqw6uxjchm2t9.css">
-
+	<script src="js/jQuery.js"></script>
 </head>
 <body>
 	<!-- 头部开始 -->
@@ -101,6 +101,7 @@
 					<dt>教育应用<span class="col-lg-none col-sm-inblock">+</span></dt>
 						<dd class="col-lg-inblock col-sm-none">Apple 与教育</dd>
 						<dd class="col-lg-inblock col-sm-none">高校师生选购</dd>
+						</dl><dl>
 					<dt>商务应用<span class="col-lg-none col-sm-inblock">+</span></dt>
 						<dd class="col-lg-inblock col-sm-none">Apple 与商务</dd>
 						<dd class="col-lg-inblock col-sm-none">商务选购</dd>
@@ -110,6 +111,7 @@
 						<dd class="col-lg-inblock col-sm-none">管理你的 Apple ID</dd>
 						<dd class="col-lg-inblock col-sm-none">Apple Store 帐户</dd>
 						<dd class="col-lg-inblock col-sm-none">iCloud.com</dd>
+						</dl><dl>
 					<dt>Apple 价值观<span class="col-lg-none col-sm-inblock">+</span></dt>
 						<dd class="col-lg-inblock col-sm-none">辅助功能</dd>
 						<dd class="col-lg-inblock col-sm-none">环境责任</dd>
@@ -139,6 +141,12 @@
 		</div>
 	</div>
 </body>
+<script>
+$("dt").click(function  () {
+	var index=$(this).index();
+	$(this).siblings().toggleClass("col-sm-none")
+})
+	</script>
 </html>
 
 
