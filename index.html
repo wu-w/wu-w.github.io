@@ -38,12 +38,18 @@
 </header>
 <div id="fullpage">
     <!--<div class="ba col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>-->
-    <div class="section wel">Welcome</div>
+    <div class="section wel">
+        <div class="topwel">
+        <p>Welcome</p>
+        <p>I'm Wu Yanhong</p>
+        <p>Front end Engineer</p></div>
+    </div>
     <div class="section">
         <div class="gr">个人简介</div>
         <div class="baxia">
 
             <div class="bab col-lg-6 col-md-5">
+                <div class="bababa"></div>
             </div>
             <div class="xia col-lg-6 col-md-7">
                 <ul>
@@ -52,7 +58,7 @@
                     <li>电话：1355593048</li>
                     <li>邮箱：148947310@qq.com</li>
                     <li>个人特长：画画</li>
-                    <li>座右铭：世上无难事，只要肯放弃</li>
+                    <li>座右铭：有梦想谁都了不起</li>
                 </ul>
             </div>
         </div>
@@ -60,28 +66,6 @@
     <div class="section">
         <div class="gr">个人技能</div>
         <div class="jn">
-            <!--<div class="jnzuo col-lg-6 ">-->
-                <!--<h1>PS</h1>-->
-                <!--<div class="jn1">-->
-                    <!--<div class="jn11"></div>-->
-                <!--</div>-->
-                <!--<h1>AI</h1>-->
-                <!--<div class="jn1">-->
-                    <!--<div class="jn12"></div>-->
-                <!--</div>-->
-                <!--<h1>jQuery</h1>-->
-                <!--<div class="jn1">-->
-                    <!--<div class="jn13"></div>-->
-                <!--</div>-->
-                <!--<h1>H5</h1>-->
-                <!--<div class="jn1">-->
-                    <!--<div class="jn14"></div>-->
-                <!--</div>-->
-                <!--<h1>JS</h1>-->
-                <!--<div class="jn1" style="margin-bottom:20px;">-->
-                    <!--<div class="jn11"></div>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="cbox col-lg-6">
             <canvas id="main" width="683" height="451"></canvas></div>
             <div class="jnyou col-sm-none col-lg-6">
@@ -619,11 +603,12 @@
         //slideSelector:slide的选择器，默认为.slide
         slideSelector: ".slide",
         afterLoad: function (l, index) {
+            if(index==2){
+                $(".bab").fadeOut().fadeIn();
+                $(".xia").css("width",0).animate({width:500},1000)
+            }
             if (index == 3) {
-                $(".jn11").animate({width: 380}, 1000);
-                $(".jn12").animate({width: 350}, 1000);
-                $(".jn13").animate({width: 300}, 1000);
-                $(".jn14").animate({width: 250}, 1000);
+                $("canvas").css("transform","scale(1,1)").css("transition","transform .5s");
             }
         }
     });
