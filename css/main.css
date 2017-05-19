@@ -17,6 +17,7 @@
 	/*height: 300px;*/
 	margin: auto;
 	/*margin-left: 150px;*/
+	background: rgba(0,0,0,0.3);
 }
 header{
 	width: 100%;
@@ -117,6 +118,9 @@ body{
 	font-size: 24px;
 	color:white;
 	font-weight: lighter;
+	overflow: hidden; /*自动隐藏文字*/
+	text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+	white-space: nowrap;/*强制不换行*/
 }
 .jn{
 	width: 100%;
@@ -235,7 +239,7 @@ canvas{
 	border-width: 0px;
 	display: inline-block;
 	vertical-align: baseline;
-	transform:scale(0.1,0.1);
+	transform:scale(0.3,0.3);
 }
 .ju1{
 	background-image: url(../img/0185208f72281497f0f266ae2fe0d83d.jpg);
@@ -367,6 +371,7 @@ footer p{
 	}
 	.xia ul li{
 		font-size: 18px;
+
 	}
 	.ba{
 		height: 400px;
